@@ -24,22 +24,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextNum1=findViewById(R.id.editTextNum1);
         editTextNum2=findViewById(R.id.editTextNum2);
 
-        buttonAdd=findViewById(R.id.buttonAdd);
+        buttonAdd=(Button)findViewById(R.id.buttonAdd);
+        buttonSub=(Button)findViewById(R.id.buttonSub);
+        buttonMul=(Button)findViewById(R.id.buttonMul);
+        buttonDiv=(Button)findViewById(R.id.buttonDiv);
+
         buttonAdd.setOnClickListener(this);
-
-        buttonSub=findViewById(R.id.buttonSub);
         buttonSub.setOnClickListener(this);
-
-        buttonMul=findViewById(R.id.buttonMul);
         buttonMul.setOnClickListener(this);
-
-        buttonDiv=findViewById(R.id.buttonDiv);
         buttonDiv.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        float num1=0, num2=0, id=v.getId();
+        float num1=0, num2=0;
         try {
             num1 = Float.parseFloat(editTextNum1.getText().toString());
             num2 = Float.parseFloat(editTextNum2.getText().toString());
@@ -47,18 +45,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             textView.setText("Invalid Number");
             return;
         }
-        if(id == R.id.buttonAdd) {
-            num1 += num2;
-        } else if(id == R.id.buttonSub) {
-            num1 -= num2;
-        } else if(id == R.id.buttonMul) {
-            num1 *= num2;
-        } else if(id == R.id.buttonDiv) {
-            if(num2 == 0) {
-                textView.setText("Divided by zero");
-                return;
-            } else {
-                num1 /= num2;
+        switch(v.getId()) {
+            case R.id.buttonAdd: num1 += num2; break;
+            case R.id.buttonSub: num1 -= num2; break;
+            case R.id.buttonMul: num1 *= num2; break;
+            case R.id.buttonDiv: {
+                if(num2 == 0) {
+                    textView.setText("Divided by zero");
+                    return;
+                } else {
+                    num1 /= num2;
+                }
+                break;
             }
         }
         textView.setText(String.valueOf(num1));
