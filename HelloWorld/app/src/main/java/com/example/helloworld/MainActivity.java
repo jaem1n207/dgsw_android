@@ -11,7 +11,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView textView;
     private EditText editTextNum1, editTextNum2;
-    private Button buttonAdd, buttonSub, buttonMul;
+    private Button buttonAdd, buttonSub, buttonMul, buttonDiv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,36 +28,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonAdd.setOnClickListener(this);
 
         buttonSub=findViewById(R.id.buttonSub);
-        buttonSub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                float num1=0, num2=0;
-                try {
-                    num1=Float.parseFloat(editTextNum1.getText().toString());
-                    num2=Float.parseFloat(editTextNum2.getText().toString());
-                }catch(NumberFormatException e) {
-                    textView.setText("Invalid Number");
-                    return;
-                }
-                textView.setText(String.valueOf(num1-num2));
-            }
-        });
-        /*
-            buttonSub=findViewById(R.id.buttonSub);
-            buttonSub.setOnClickListener((v) -> {
-                float num1 = Float.parseFloat(editTextNum1.getText().toString());
-                float num2=Float.parseFloat(editTextNum2.getText().toString());
-                textView.setText(String.valueOf(num1-num2));
-            });
-        */
+        buttonSub.setOnClickListener(this);
 
         buttonMul=findViewById(R.id.buttonMul);
-        buttonMul.setOnClickListener(listener);
+        buttonMul.setOnClickListener(this);
+
+        buttonDiv=findViewById(R.id.buttonDiv);
+        buttonDiv.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        float num1=0, num2=0;
+        float num1=0, num2=0, id=v.getId();
         try {
             num1 = Float.parseFloat(editTextNum1.getText().toString());
             num2 = Float.parseFloat(editTextNum2.getText().toString());
@@ -65,31 +47,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             textView.setText("Invalid Number");
             return;
         }
-        textView.setText(String.valueOf(num1+num2));
-    }
-
-    private View.OnClickListener listener = v -> {
-        float num1=0, num2=0;
-        try {
-            num1=Float.parseFloat(editTextNum1.getText().toString());
-            num2=Float.parseFloat(editTextNum2.getText().toString());
-        }catch(NumberFormatException e) {
-            textView.setText("Invalid Number");
-            return;
+        if(id == R.id.buttonAdd) {
+            num1 += num2;
+        } else if(id == R.id.buttonSub) {
+            num1 -= num2;
+        } else if(id == R.id.buttonMul) {
+            num1 *= num2;
+        } else if(id == R.id.buttonDiv) {
+            if(num2 == 0) {
+                textView.setText("Divided by zero");
+                return;
+            } else {
+                num1 /= num2;
+            }
         }
-        textView.setText(String.valueOf(num1*num2));
-    };
-
-    public void onDivision(View v) {
-        float num1=0, num2=0;
-        try {
-            num1 = Float.parseFloat(editTextNum1.getText().toString());
-            num2 = Float.parseFloat(editTextNum2.getText().toString());
-            if(num2==0) textView.setText("Divided by zero");
-        }catch(NumberFormatException e) {
-            textView.setText("Invalid Number");
-            return;
-        }
-        textView.setText(String.valueOf(num1/num2));
+        textView.setText(String.valueOf(num1));
     }
 }
