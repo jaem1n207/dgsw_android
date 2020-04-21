@@ -10,8 +10,10 @@
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="회원가입"
         android:textStyle="bold"
+        android:textSize="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +50,8 @@
         android:gravity="center_horizontal"
         android:hint="전화번호"
         android:inputType="phone"
-        app:layout_constraintStart_toStartOf="@+id/editTextName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextName" />
 
 
@@ -84,17 +87,19 @@
         android:hint="약관 동의"
         android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/checkBoxTerms"
-        app:layout_constraintEnd_toEndOf="@+id/checkBoxTerms" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <CheckBox
         android:id="@+id/checkBoxTerms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="107dp"
         android:layout_marginBottom="336dp"
         android:text="이용 약관 (필수)"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <CheckBox
         android:id="@+id/checkBoxMarketing"
@@ -102,7 +107,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="마케팅 활용 동의 (선택)"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxTerms"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxTerms" />
 
     <ProgressBar
@@ -112,8 +118,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:max="100"
-        app:layout_constraintEnd_toEndOf="@+id/checkBoxMarketing"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxMarketing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxMarketing" />
 
     <Button
@@ -122,8 +128,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="신청"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@+id/progressBar"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar"
         tools:ignore="MissingConstraints" />
 
